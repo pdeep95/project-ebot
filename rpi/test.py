@@ -1,11 +1,10 @@
+import sys
 import time
 
-def func():
-    while True:
-        try:
-            print(time.time())
-            time.sleep(1)
-        except KeyboardInterrupt:
-            return
+print(sys.argv[1])
 
-func()
+while True:
+    try:
+        pass
+    except KeyboardInterrupt:
+        break
