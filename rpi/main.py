@@ -1,6 +1,6 @@
+# this is main file and has to be run first (This actually initializes the RPi GPIOs)
 import RPi.GPIO as io
-import subprocess
-import time
+
 
 # let MOTOR1E & MOTOR2E both be high (Vcc)
 MOTOR1A, MOTOR1B, MOTOR1E = 18, 23, None        # GPIO pin assignment for motor 1
@@ -21,29 +21,3 @@ io.setup(GREEN_LED, io.OUT)
 
 io.setup(TRIG, io.OUT)                  # for Distance Sensor
 io.setup(ECHO, io.IN)                   # for Distance Sensor
-
-def distance():
-    io.output(TRIG, False)
-    io.output(TRIG, True)
-    time.sleep(0.00001)
-    io.output(TRIG, False)
-
-    while io.input(ECHO) == 0:
-        start = time.time()
-
-    while io.input(ECHO) == 1:
-        stop = time.time()
-    return round(((stop-start) * 17150), 2)
-
-
-
-def move(dir):
-    if dir == "left":
-        pass
-    elif dir == 'right':
-        pass
-    elif dir == 'straight':
-        pass
-
-    return
-
