@@ -8,7 +8,7 @@ SWITCH = 4      # a switch is connected to pin 4
 MOTOR1A, MOTOR1B, MOTOR1E = 18, 23, None        # GPIO pin assignment for motor 1
 MOTOR2A, MOTOR2B, MOTOR2E = 24, 25, None        # GPIO pin assignment for motor 2
 RED_LED, GREEN_LED = 5,6                        # GPIO pin assignment for red & green leds.
-TRIG, ECHO  = 17, 27                            # for distance sensor
+TRIG, ECHO  = 20, 21                            # for distance sensor
 MSDA, MSDL = 2, 3                               # for magnetometer
 
 io.setmode(io.BOARD)
