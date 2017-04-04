@@ -34,7 +34,7 @@ def move(dir):
         while True:
             if distance() < 20:
                 stop()
-            time.sleep(0.1)
+            	time.sleep(1)
     elif dir == 'right':
         io.output(MOTOR1A, False)
         io.output(MOTOR1B, True)
@@ -43,7 +43,7 @@ def move(dir):
         while True:
             if distance() < 20:
                 stop()
-            time.sleep(0.1)
+		time.sleep(1)
     elif dir == 'straight':
         io.output(MOTOR1A, True)
         io.output(MOTOR1B, False)
@@ -52,7 +52,7 @@ def move(dir):
         while True:
             if distance() < 20:
                 stop()
-            time.sleep(0.1)
+            	time.sleep(1)
     elif dir == 'reverse':
         io.output(MOTOR1A, False)
         io.output(MOTOR1B, True)
@@ -61,7 +61,7 @@ def move(dir):
         while True:
             if distance() < 20:
                 stop()
-            time.sleep(0.1)
+            	time.sleep(1)
     return
 
 if len(sys.argv) > 1:
