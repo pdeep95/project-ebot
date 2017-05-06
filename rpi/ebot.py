@@ -5,6 +5,7 @@ import requests
 import os, time
 import speech_recognition as sr
 from app.main import *
+import set_hw
 
 r = sr.Recognizer()
 
@@ -60,20 +61,42 @@ try:
 		if res['category'] == "hardware":
 			if res['type'] == "dict":
 				result = res['result']
-		# need to add result to db		
-		if res['type'] == "single":
-			OUT(res['result'])
-		elif res['type'] == 'list':
-			result=""
-			for r in res['result']:
-				result = result + str(r) + " \n \n \n \n"
-			OUT(result)
+				if result['intent'] == "alarm":
+					#set alarm here
+					set_hw.set_alarm(result['time'])
+					OUT("Alarm is set at " + result['time'])
+				elif result['intent'] == "light":
+					#turn on or off light
+					if result['time']:
+						set_hw.set_light(result['time'], result['action'])
+						OUT("Light was turned "+str(result['action']))
+					else:
+						if result['action'] == 'on':
+							io.output(RED_LED, True)
+						else:
+							io.output(RED_LED, False)
+				elif result['intent'] == "reminder":
+					#reminder
+					OUT("Reminder to "+result['matter']+" is set.")
+				elif result['intent'] == "music":
+					#play music
+					OUT("Playing Music Now")
+		# need to add result to db
 		else:
-			OUT("Sorry, The result is in tabular form and can not be read.")
-	else:
-		OUT(res['error'])
+			if res['type'] == "single":
+				OUT(res['result'])
+			elif res['type'] == 'list':
+				result=""
+				for r in res['result']:
+					result = result + str(r) + " \n \n \n \n"
+				OUT(result)
+			else:
+				OUT("Sorry, The result is in tabular form and can not be read.")
+	else:	
+			OUT(res['error'])
 
 except Exception as e:
+	print(str(e))
 	OUT(ERR_MSG)
 
 

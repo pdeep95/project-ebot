@@ -26,9 +26,9 @@ io.setup(GREEN_LED, io.OUT)
 io.setup(TRIG, io.OUT)                  # for Distance Sensor
 io.setup(ECHO, io.IN)                   # for Distance Sensor
 
-'''
-io.setup(SWITCH, io.IN, pull_up_down=io.PUD_UP)
+io.setup(SWITCH, io.IN, pull_up_down=io.PUD_UP)  # switch to break the program
 
+'''
 while True:
     input_state = io.input(SWITCH)
     if input_state == False:

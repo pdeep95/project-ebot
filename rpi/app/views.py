@@ -2,14 +2,15 @@ import os
 import subprocess
 import signal
 import RPi.GPIO as io
+from .main import *
 # import psutil
 from django.shortcuts import render
 from django.http import HttpResponse
 from app.models import Process
 # from . import hardware
 
-MOTOR1A, MOTOR1B, MOTOR1E = 18, 23, None        # GPIO pin assignment for motor 1
-MOTOR2A, MOTOR2B, MOTOR2E = 24, 25, None        # GPIO pin assignment for motor 2
+# MOTOR1A, MOTOR1B, MOTOR1E = 18, 23, None        # GPIO pin assignment for motor 1
+# MOTOR2A, MOTOR2B, MOTOR2E = 24, 25, None        # GPIO pin assignment for motor 2
 
 def index(request):
     # return HttpResponse("Index Page")
@@ -19,8 +20,8 @@ def navigate(request):
     if request.GET:
         dir = request.GET['dir']
         if dir in ['straight','left','right','reverse']:
-            p = subprocess.Popen(['python','test.py',dir])
-            P = Process(pid=p.pid, direction=dir)
+            p = subprocess.Popen(['python','hardware.py',dir])
+            P = Process(pid=p.pid, direction=dir)	# writing it to Database
             P.save()
         elif dir == 'stop':
             io.output(MOTOR1A, False)

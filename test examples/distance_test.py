@@ -3,8 +3,8 @@ import time
 
 io.setmode(io.BCM)
 
-trig = 23
-echo = 24
+trig = 20
+echo = 21
 
 print("distance sensing")
 io.setup(trig, io.OUT)
